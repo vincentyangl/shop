@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.mapper.ProductDao">
+     <insert id="save" parameterType="Product">
+        insert into product (pname,price,saleCount,descript,pimg,typeId) values (#{pname},#{price},#{saleCount},#{descript},#{pimg},#{productType.ptid})
+     </insert>
+     <delete id="delete" parameterType="int">
+        delete from product where pid=#{value}
+     </delete>
+     <update id="update" parameterType="Product">
+        update product set pname=#{pname},price=#{price},saleCount=#{saleCount},descript=#{descript},pimg=#{pimg},typeId=#{productType.ptid} where pid=#{pid}
+     </update>
+     <resultMap type="Product" id="ProductMap">
+        <result column="pid" property="pid"/>
+        <result column="pname" property="pname"/>
+        <result column="price" property="price"/>
+        <result column="saleCount" property="saleCount"/>
+        <result column="descript" property="descript"/>
+        <result column="pimg" property="pimg"/>
+       <association property="productType" column="typeId" select="com.mapper.ProductTypeDao.getById"></association>
+     </resultMap>
+     <select id="listAll" parameterType="java.util.Map" resultMap="ProductMap">
+        select * from product 
+        <where>
+           <if test="pid!=null">
+              and pid=#{pid}
+           </if>
+           <if test="pname!=null">
+              and pname = #{pname}
+           </if>
+           <if test="qname!=null">
+              and pname like '%${qname}%'
+           </if>
+        </where>
+     </select>
+  </mapper>
