@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.mapper.PermissionsDao">
+   <insert id="save" parameterType="Permissions">
+      insert into permissions (per_name,per_newName,per_url,per_menu,per_parentId) 
+      values (#{per_name},#{per_newName},#{per_url},#{per_menu},#{per_parentId})
+   </insert>
+   <delete id="delete" parameterType="int">
+      delete from permissions where per_id=#{value}
+   </delete>
+   <update id="update" parameterType="Permissions">
+      update permissions set per_name=#{per_name},per_newName=#{per_newName},per_url=#{per_url},
+      per_menu=#{per_menu},per_parentId=#{per_parentId} where per_id=#{per_id}
+   </update>
+   <resultMap type="Permissions" id="PermissionsMap">
+      <result column="per_id" property="per_id"/>
+      <result column="per_name" property="per_name"/>
+      <result column="per_newName" property="per_newName"/>
+      <result column="per_url" property="per_url"/>
+      <result column="per_menu" property="per_menu"/>
+      <result column="per_parentId" property="per_parentId"/>
+      <association property="pers" column="per_parentId" select="com.mapper.PermissionsDao.getChildNode"></association>
+   </resultMap>
+   <select id="listAll"  parameterType="java.util.Map" resultMap="PermissionsMap">
+      select * from permissions 
+      <where>
+         <if test="per_menu!=null">
+            and per_menu=#{per_menu}
+         </if>
+         <if test="per_parentId!=null">
+            and per_parentId=#{per_parentId}
+         </if>
+      </where>
+   </select>
+   <select id="getChildNode" parameterType="int" resultMap="PermissionsMap">
+      select * from permissions where per_parentId=#{value}
+   </select>
+  </mapper>

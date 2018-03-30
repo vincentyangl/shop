@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+       <%
+    String path=request.getContextPath();
+    String basePath=request.getScheme()+"://"+request.getServerName()+":"
+    +request.getServerPort()+path+"/";
+%>
+<base href="<%=basePath%>">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,7 +76,7 @@
 						锁屏</a>
 					</li>
 					<li class="layui-nav-item">
-						<a href="login.jsp">
+						<a href="/logout">
                         <i class="iconfont icon-exit"></i>
 						退出</a>
 					</li>
@@ -84,11 +90,12 @@
 		<!-- 左侧菜单 -->
 		<ul class="layui-nav layui-nav-tree">
 			<li class="layui-nav-item layui-this">
-				<a href="javascript:;" data-url="main.jsp">
+				<a href="javascript:;" data-url="http://localhost:8080/main.jsp">
 				    <i class="iconfont icon-home1" data-icon='icon-home1'></i>
 					<span>后台首页</span>
 				</a>
 			</li>
+			
 			<!-- 个人信息 -->
 			<li class="layui-nav-item">
 				<a href="javascript:;">
@@ -126,7 +133,7 @@
 					</a>
 					    <dl class="layui-nav-child">
 					    	<dd>
-					    		<a href="javascript:;" data-url="table.jsp">
+					    		<a href="javascript:;" data-url="/table.jsp">
 					    		   <i class="iconfont icon-yonghu1" data-icon='icon-yonghu1'></i>
 					    		   <span>有线条表格</span>
 					    		</a>
@@ -370,7 +377,7 @@
 				</ul>
 			<div class="layui-tab-content" style="min-height: 150px; ">
 				<div class="layui-tab-item layui-show">
-					<iframe class="larry-iframe" data-id='0' src="main.jsp"></iframe>
+					<iframe class="larry-iframe" data-id='0' src="http://localhost:8080/main.jsp"></iframe>
 				</div>
 			</div>
 		</div>
@@ -394,7 +401,7 @@
 	<div id="locker" class="lock-wrapper">
 		<div id="time"></div>
 		<div class="lock-box center">
-			<img src="images/userimg.jpg" alt="">
+			<img src="/images/userimg.jpg" alt="">
 			<h1>admin</h1>
 			<duv class="form-group col-lg-12">
 				<input type="password" placeholder='锁屏状态，请输入密码解锁' id="lock_password" class="form-control lock-input" autofocus name="lock_password">

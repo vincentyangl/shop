@@ -13,7 +13,6 @@
 	<mvc:default-servlet-handler />
 	<mvc:resources location="/js/" mapping="/js/**" />
 	<mvc:resources location="/css/" mapping="/css/**" />
-	<mvc:resources location="/img/" mapping="/img/**" />
 	<mvc:resources location="/images/" mapping="/images/**" />
 	<mvc:resources location="/json/" mapping="/json/**" />
 	<mvc:resources location="/jsplug/" mapping="/jsplug/**" />

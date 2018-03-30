@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>   
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,9 +13,9 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">	
 	<meta name="format-detection" content="telephone=no">	
 	<!-- load css -->
-	<link rel="stylesheet" type="text/css" href="common/layui/css/layui.css" media="all">
-	<link rel="stylesheet" type="text/css" href="css/login.css" media="all">
-		<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="/common/layui/css/layui.css" media="all">
+	<link rel="stylesheet" type="text/css" href="/css/login.css" media="all">
+		<script src="/js/jquery.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 <div class="layui-canvs"></div>
@@ -26,15 +26,15 @@
 		 <em>Management System</em>
 	</h1>
 	<div class="layui-user-icon larry-login">
-		 <input type="text" name="uname" placeholder="账号" class="login_txtbx"/>
+		 <input type="text" name="user_name" placeholder="账号" class="login_txtbx"/>
 	</div>
 	<div class="layui-pwd-icon larry-login">
-		 <input type="password"  name="upwd" placeholder="密码" class="login_txtbx"/>
+		 <input type="password"  name="user_password" placeholder="密码" class="login_txtbx"/>
 	</div>
     <div class="layui-val-icon larry-login">
     	<div class="layui-code-box">
     		<input type="text" id="code" name="code" placeholder="验证码" maxlength="4" class="login_txtbx">
-            <img src="images/verifyimg.png" alt="" class="verifyImg" id="verifyImg" onClick="javascript:this.src='xxx'+Math.random();">
+            <img src="/images/verifyimg.png" alt="" class="verifyImg" id="verifyImg" onClick="javascript:this.src='xxx'+Math.random();">
     	</div>
     </div>
     <div class="layui-submit larry-login">
@@ -46,9 +46,9 @@
     </div>
 </div>
 </form>
-<script type="text/javascript" src="common/layui/lay/dest/layui.all.js"></script>
-<script type="text/javascript" src="js/login.js"></script>
-<script type="text/javascript" src="jsplug/jparticle.jquery.js"></script>
+<script type="text/javascript" src="/common/layui/lay/dest/layui.all.js"></script>
+<script type="text/javascript" src="/js/login.js"></script>
+<script type="text/javascript" src="/jsplug/jparticle.jquery.js"></script>
 <script type="text/javascript">
 $(function(){
 	$(".layui-canvs").jParticle({
@@ -58,7 +58,7 @@ $(function(){
 });
 //登录链接测试，使用时可删除
 $(".submit_btn").click(function(){
-  document.forms[0].action="index.jsp";
+  document.forms[0].action="/user/login";
   document.forms[0].submit();
 });
 </script>

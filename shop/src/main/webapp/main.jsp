@@ -11,10 +11,10 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black"> 
   <meta name="apple-mobile-web-app-capable" content="yes">  
   <meta name="format-detection" content="telephone=no"> 
-	<link rel="stylesheet" type="text/css" href="common/layui/css/layui.css" media="all">
-	<link rel="stylesheet" type="text/css" href="common/bootstrap/css/bootstrap.css" media="all">
-	<link rel="stylesheet" type="text/css" href="common/global.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css" media="all">
+	<link rel="stylesheet" type="text/css" href="/common/layui/css/layui.css" media="all">
+	<link rel="stylesheet" type="text/css" href="/common/bootstrap/css/bootstrap.css" media="all">
+	<link rel="stylesheet" type="text/css" href="/common/global.css">
+	<link rel="stylesheet" type="text/css" href="/css/main.css" media="all">
 </head>
 <body>
 <section class="larry-wrapper">
@@ -250,7 +250,7 @@
 
 </section>
 
-<script type="text/javascript" src="common/layui/layui.js"></script>
+<script type="text/javascript" src="/common/layui/layui.js"></script>
 <script type="text/javascript">
 	layui.use(['jquery','layer','element'],function(){
 		window.jQuery = window.$ = layui.jquery;
@@ -270,7 +270,7 @@
 
 	});
 </script>
-<script type="text/javascript" src="jsplug/echarts.min.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="/jsplug/echarts.min.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
 </body>
 </html>
