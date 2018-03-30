@@ -1,8 +1,10 @@
 package com.realm;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -10,23 +12,37 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.bean.Permissions;
 import com.bean.User;
+import com.service.PermissionsService;
 import com.service.UserService;
 
 public class MyRealm extends AuthorizingRealm{
 
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private PermissionsService permissionsService;
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		// TODO Auto-generated method stub
-		return null;
+		//获取的登录后的用户名
+		String user_name = (String) principals.getPrimaryPrincipal();
+		User user = getUserByName(user_name).get(0);
+		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
+		Set<String> set = new HashSet<>();
+		set.add(user.getRole().getRole_name());
+		//封装角色集合
+		authorizationInfo.setRoles(set);
+		//封装角色对应的权限集合
+		authorizationInfo.setStringPermissions(getPermissionsName(user.getRole().getRole_id()));
+		return authorizationInfo;
 	}
 
 	@Override
@@ -61,6 +77,15 @@ public class MyRealm extends AuthorizingRealm{
 		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(principal, credentials,salt, realmName);
 		return info;
 	}
+	
+	public Set<String> getPermissionsName(int role_id) {
+		Set<String> set = new HashSet<>();
+		List<Permissions> permissions = permissionsService.getPermissionsByRoleId(role_id);
+		for (Permissions permissions2 : permissions) {
+			set.add(permissions2.getPer_name());
+		}
+		return set;
+	}
 
 	public List<User> getUserByName(String user_name) {
 		Map map = new HashMap<>();
@@ -68,6 +93,7 @@ public class MyRealm extends AuthorizingRealm{
 		List<User> users = userService.listAll(map);
 		return users;
 	}
+	
 
 	public static void main(String[] args) {
 		

@@ -12,5 +12,5 @@ public interface PermissionsService {
 	public void save(Permissions per);
 	public void delete(int per_id);
 	public void update(Permissions per);
-	
+	public List<Permissions> getPermissionsByRoleId(int role_id);
 }

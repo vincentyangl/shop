@@ -42,6 +42,12 @@ public class PermissionsServiceImpl implements PermissionsService{
 		permissionsDao.update(per);
 	}
 
+	@Override
+	public List<Permissions> getPermissionsByRoleId(int role_id) {
+		List<Permissions> permissions = permissionsDao.getPermissionsByRoleId(role_id);
+		return permissions;
+	}
+
 	
 	
 }

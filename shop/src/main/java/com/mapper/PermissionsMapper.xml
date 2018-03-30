@@ -37,4 +37,7 @@
    <select id="getChildNode" parameterType="int" resultMap="PermissionsMap">
       select * from permissions where per_parentId=#{value}
    </select>
+   <select id="getPermissionsByRoleId" parameterType="int" resultMap="PermissionsMap">
+      select * from permissions where per_id in (select pid from role_per where rid = #{value})
+   </select>
   </mapper>

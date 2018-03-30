@@ -3,6 +3,7 @@ package com.mapper;
 import java.util.List;
 import java.util.Map;
 
+import com.bean.Role;
 import com.bean.User;
 
 public interface UserDao {

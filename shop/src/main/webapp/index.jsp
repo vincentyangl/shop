@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<%@ taglib uri="http://shiro.apache.org/tags" prefix="shiro" %>
        <%
     String path=request.getContextPath();
     String basePath=request.getScheme()+"://"+request.getServerName()+":"
@@ -21,7 +23,7 @@
 	<link rel="stylesheet" type="text/css" href="/common/layui/css/layui.css" media="all">
 	<link rel="stylesheet" type="text/css" href="/common/global.css" media="all">
 	<link rel="stylesheet" type="text/css" href="/css/adminstyle.css" media="all">
-	
+	<script type="text/javascript" src="/js/jquery.js"></script>
 	
 </head>
 <body>
@@ -96,6 +98,26 @@
 				</a>
 			</li>
 			
+			<c:forEach items="${permissions }" var="p">
+			<li class="layui-nav-item">
+				<a href="javascript:;">
+					<i class="iconfont icon-jiaoseguanli" ></i>
+					<span>${p.per_name }</span>
+					<em class="layui-nav-more"></em>
+				</a>
+				<dl class="layui-nav-child">
+                   <c:forEach items="${p.pers }" var="per">
+                    <dd>
+                        <a href="javascript:;" data-url="/productAdd.jsp">
+                            <i class="iconfont icon-geren1" data-icon='icon-geren1'></i>
+                            <span>${per.per_name }</span>
+                        </a>
+                    </dd>
+                    </c:forEach>
+                </dl>
+			</li>
+			</c:forEach>
+			
 			<!-- 个人信息 -->
 			<li class="layui-nav-item">
 				<a href="javascript:;">
@@ -124,6 +146,9 @@
                     </dd>
                 </dl>
 			</li>
+			
+			
+			
 			<!-- 用户管理 -->
 			<li class="layui-nav-item">
 					<a href="javascript:;">
