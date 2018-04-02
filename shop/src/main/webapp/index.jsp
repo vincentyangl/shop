@@ -98,21 +98,23 @@
 				</a>
 			</li>
 			
-			<c:forEach items="${permissions }" var="p">
+			<c:forEach items="${permissions }" var="per">
 			<li class="layui-nav-item">
 				<a href="javascript:;">
 					<i class="iconfont icon-jiaoseguanli" ></i>
-					<span>${p.per_name }</span>
+					<span>${per.per_name }</span>
 					<em class="layui-nav-more"></em>
 				</a>
 				<dl class="layui-nav-child">
-                   <c:forEach items="${p.pers }" var="per">
+                   <c:forEach items="${per.pers }" var="p">
+                    <c:if test="${p.per_menu ==1 }">
                     <dd>
-                        <a href="javascript:;" data-url="/productAdd.jsp">
+                        <a href="javascript:;" data-url="${p.per_url }">
                             <i class="iconfont icon-geren1" data-icon='icon-geren1'></i>
-                            <span>${per.per_name }</span>
+                            <span>${p.per_name }</span>
                         </a>
                     </dd>
+                    </c:if>
                     </c:forEach>
                 </dl>
 			</li>

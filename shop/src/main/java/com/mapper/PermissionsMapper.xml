@@ -21,7 +21,7 @@
       <result column="per_url" property="per_url"/>
       <result column="per_menu" property="per_menu"/>
       <result column="per_parentId" property="per_parentId"/>
-      <association property="pers" column="per_parentId" select="com.mapper.PermissionsDao.getChildNode"></association>
+      <association property="pers" column="per_id" select="com.mapper.PermissionsDao.getChildNode"></association>
    </resultMap>
    <select id="listAll"  parameterType="java.util.Map" resultMap="PermissionsMap">
       select * from permissions 
@@ -34,7 +34,7 @@
          </if>
       </where>
    </select>
-   <select id="getChildNode" parameterType="int" resultMap="PermissionsMap">
+   <select id="getChildNode" parameterType="int"  resultType="Permissions">
       select * from permissions where per_parentId=#{value}
    </select>
    <select id="getPermissionsByRoleId" parameterType="int" resultMap="PermissionsMap">
