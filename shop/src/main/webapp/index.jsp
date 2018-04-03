@@ -166,9 +166,9 @@
 					    		</a>
 					    	</dd>
 					    	<dd>
-					    		<a href="javascript:;"  data-url="table_1.jsp">
+					    		<a href="javascript:;"  data-url="/consignor/listShipInformation">
 					    		   <i class="iconfont icon-jiaoseguanli4" data-icon='icon-jiaoseguanli4'></i>
-					    		   <span>无线条输入增加内容框</span>
+					    		   <span>发货信息管理</span>
 					    		</a>
 					    	</dd>
 					    	<dd>
