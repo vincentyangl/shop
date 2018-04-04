@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+  <mapper namespace="com.mapper.Shop_ReceiveMapper">
+  <select id="listAll" resultType="Shop_Receive">
+  select * from Shop_Receive
+  </select>
+  <insert id="save" parameterType="Shop_Receive">
+  insert into Shop_Receive (member_id,receive_name,receive_phone,receive_address,state) values (#{member_id},#{receive_name},#{receive_phone},#{receive_address},#{state})
+  </insert>
+  <delete id="delete" parameterType="int">
+  delete from Shop_Receive where receive_id=#{receive_id}
+  </delete>
+  <update id="update" parameterType="Shop_Receive">
+  update Shop_Receive set member_id=#{member_id},receive_name=#{receive_name},receive_phone=#{receive_phone},receive_address=#{receive_address},state=#{state} where receive_id=#{receive_id}
+  </update>
+  <select id="getById" resultType="Shop_Receive" parameterType="int">
+  select * from Shop_Receive where receive_id=#{receive_id}
+  </select>
+  </mapper>

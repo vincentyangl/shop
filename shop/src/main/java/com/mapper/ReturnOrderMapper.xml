@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.mapper.ReturnOrderDao">
+  <resultMap type="ReturnOrder" id="ReturnOrderMap">
+  <result column="retId" property="retId"/>
+  <result column="retSerialNum" property="retSerialNum"/>
+  <result column="retType" property="retType"/>
+  <result column="retTime" property="retTime"/>
+  <result column="retState" property="retState"/>
+  <result column="retPayType" property="retPayType"/>
+  <result column="retExplain" property="retExplain"/>
+  <association property="shipInformation" column="shippingId" select="com.mapper.ShipInformationDao.getById"></association>
+  <association property="return_cause" column="retCauseId" select="com.mapper.ReturnCauseDao.getById"></association>
+  <association property="shop_Order" column="orderId" select="com.mapper.Shop_OrderMapper.getById"></association>
+  </resultMap>
+  <select id="listAll" resultMap="ReturnOrderMap">
+  select * from return_order 
+  </select>
+  <select id="getById" parameterType="int" resultMap="ReturnOrderMap">
+  select * from return_order where retId=#{value}
+  </select>
+  <delete id="delete" parameterType="int">
+  delete from return_order where retId=#{value}
+  </delete>
+  </mapper>

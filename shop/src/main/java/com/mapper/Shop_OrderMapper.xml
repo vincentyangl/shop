@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+  <mapper namespace="com.mapper.Shop_OrderMapper">
+  <resultMap type="Shop_Order" id="Shop_OrderMap">
+  <result column="order_code" property="order_code"/>
+  <result column="order_price" property="order_price"/>
+  <result column="create_time" property="create_time"/>
+  <result column="finished_time" property="finished_time"/>
+  <result column="order_status" property="order_status"/>
+  <result column="payment_status" property="payment_status"/>
+  <result column="shipping_status" property="shipping_status"/>
+  <result column="payment_way" property="payment_way"/>
+  <association property="member_ids" column="member_id" select="com.mapper.Shop_MemberMapper.getById"></association>
+  <association property="receive_ids" column="receive_id" select="com.mapper.Shop_ReceiveMapper.getById"></association>
+  </resultMap>
+  <select id="listAll" resultMap="Shop_OrderMap">
+  select * from Shop_Order
+  </select>
+  
+  <delete id="delete" parameterType="int">
+  delete from Shop_Order where order_id=#{order_id}
+  </delete>
+  
+  <select id="getById" parameterType="int" resultType="Shop_Order">
+  select * from Shop_Order where order_id=#{value}
+  </select>
+  
+  <update id="update" parameterType="Shop_Order">
+  update Shop_Order set order_code=#{order_code},order_price=#{order_price},create_time=#{create_time},finished_time=#{finished_time},member_id=#{member_id},order_status=#{order_status},payment_status=#{payment_status},shipping_status=#{shipping_status},payment_way=#{payment_way},receive_id=#{receive_id} where order_id=#{order_id}
+  </update>
+  </mapper>

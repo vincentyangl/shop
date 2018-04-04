@@ -58,6 +58,7 @@
        /common/** = anon
        /json/** = anon
        /jsplug/** = anon
+       /ztree/** = anon
        
        /login.jsp=anon
         /user/login=anon

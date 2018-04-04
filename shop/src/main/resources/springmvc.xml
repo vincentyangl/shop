@@ -17,6 +17,7 @@
 	<mvc:resources location="/json/" mapping="/json/**" />
 	<mvc:resources location="/jsplug/" mapping="/jsplug/**" />
 	<mvc:resources location="/common/" mapping="/common/**" />
+	<mvc:resources location="/ztree/" mapping="/ztree/**" />
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/"></property>
