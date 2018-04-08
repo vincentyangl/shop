@@ -1,12 +1,13 @@
 package com.service;
 
 import java.util.List;
-
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bean.Shop_Order;
+import com.bean.Shop_Receive;
 import com.mapper.Shop_OrderMapper;
 
 @Service
@@ -15,8 +16,8 @@ public class Shop_OrderServiceImpl implements Shop_OrderService{
 	@Autowired
 	private Shop_OrderMapper shop_OrderMapper;
 	@Override
-	public List<Shop_Order> listAll() {
-		List<Shop_Order> list=shop_OrderMapper.listAll();
+	public List<Shop_Order> listAll(Map map) {
+		List<Shop_Order> list=shop_OrderMapper.listAll(map);
 		return list;
 	}
 	@Override

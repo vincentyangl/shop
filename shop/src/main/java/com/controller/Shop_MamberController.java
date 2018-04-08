@@ -20,14 +20,14 @@ public class Shop_MamberController {
 
 	@Autowired
 	private Shop_MemberService shop_MamberService;
-	@RequestMapping("/index")
+	@RequestMapping("/smindex")
 	public ModelAndView listAll(HttpServletRequest request){
 		ModelAndView mv=new ModelAndView();
 		Map map=new HashMap();
 		map=initMap(request, map);
 		List<Shop_Member> list=shop_MamberService.listAll(map);
 		System.out.println(list);
-		mv.setViewName("index");
+		mv.setViewName("smindex");
 		mv.addObject("list", list);
 		return mv;
 	} 
@@ -44,32 +44,32 @@ public class Shop_MamberController {
 	}
 	
 	
-	@RequestMapping("/delete")
+	@RequestMapping("/smdelete")
 	public String delete(int member_id,HttpServletRequest request){
 		int a=Integer.parseInt(request.getParameter("member_id"));
 		System.out.println(a);
 		shop_MamberService.delete(member_id);
-		return "redirect:index";
+		return "redirect:smindex";
 	}
-	@RequestMapping("/save")
+	@RequestMapping("/smsave")
 	public String save(Shop_Member shop_Member){
 		shop_MamberService.save(shop_Member);
-		return "redirect:index";
+		return "redirect:smindex";
 	}
-	@RequestMapping("/update")
+	@RequestMapping("/smupdate")
 	public String update(Shop_Member shop_Member){
 		System.out.println(shop_Member.getMember_id());
 		shop_MamberService.update(shop_Member);
-		return "redirect:index";
+		return "redirect:smindex";
 	}
-	@RequestMapping("/getById")
+	@RequestMapping("/smgetById")
 	public ModelAndView getById(int member_id,HttpServletRequest request){
 		int id=Integer.parseInt(request.getParameter("member_id"));
 		System.out.println(id);
 		ModelAndView mv=new ModelAndView();
 		Shop_Member shop_Member=shop_MamberService.getById(member_id);
 		System.out.println(shop_Member);
-		mv.setViewName("update");
+		mv.setViewName("smupdate");
 		mv.addObject("shop_Member", shop_Member);
 		return mv;
 	}

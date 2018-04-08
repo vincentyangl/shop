@@ -13,7 +13,7 @@
   delete from Shop_Receive where receive_id=#{receive_id}
   </delete>
   <update id="update" parameterType="Shop_Receive">
-  update Shop_Receive set member_id=#{member_id},receive_name=#{receive_name},receive_phone=#{receive_phone},receive_address=#{receive_address},state=#{state} where receive_id=#{receive_id}
+  update Shop_Receive set receive_phone=#{receive_phone},receive_address=#{receive_address} where receive_id=#{receive_id}
   </update>
   <select id="getById" resultType="Shop_Receive" parameterType="int">
   select * from Shop_Receive where receive_id=#{receive_id}

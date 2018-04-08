@@ -27,6 +27,6 @@
   </update>
   
   <select id="getById" resultType="Shop_Member" parameterType="int">
-  select * from Shop_Member where member_id=#{value}
+  select * from Shop_Member where member_id=#{member_id}
   </select>
   </mapper>
